@@ -1,0 +1,78 @@
+import os 
+import subprocess
+import json
+
+
+    
+def fill_db(download_file):
+    # download_file = "~/Etudes/stage2A/my_modules/TI/download.sh"
+    download_file = os.path.expanduser(download_file)
+    try :
+        subprocess.run(['bash', download_file],  check = True)
+        return True
+    except subprocess.CalledProcessError as e:
+        print(f"Error occured while filling the TI database: {e}")
+        return False
+
+
+def search_for_ip(ip, feed_folder):
+    path = None
+    feed_folder = os.path.expanduser(feed_folder)+"/"
+    is_found = False
+    for feed_file in os.listdir(feed_folder):
+        with open(feed_folder+feed_file, 'r') as f:
+            for line_number, line in enumerate(f, start = 1):
+                if ip in line:
+                    path=f"{feed_file},  Line: {line_number}"
+                    is_found = True
+
+    return (is_found, path)
+    
+# def search_for_domain(domain):
+#     feed_folder = "feed"
+#     is_found = 0
+#     for feed_file in os.listdir(feed_folder):
+#         print(feed_file)
+#         with open("feed/"+feed_file, 'r') as f:
+#             for line_number, line in enumerate(f, start = 1):
+#                 if domain in line:
+#                     print("File: ", feed_file,  "\tLine: " , line_number)
+#                     is_found = 1
+
+#     if is_found == 1:
+#         return True
+#     return False
+
+def set_malicious_ip(ip) :
+    pass
+
+def set_malicious_domain(ip) :
+    pass
+
+def is_malicious_ip(ip):
+    #call for search_for_ip. If the research is positive, the call is then on set_malicious_ip
+    pass
+
+def is_malicious_domain(domain):
+    #Same as is_malicious_ip
+    pass
+
+
+def main(ip, download_file, feed_folder):
+    if fill_db(download_file):
+        print("DB filled successufully")
+
+        search_result = search_for_ip(ip, feed_folder)
+        is_found = search_result[0]
+        path = search_result[1]
+        if is_found :
+            return f"Malicious IP found {ip} in {path}"
+
+        else:
+            pass
+    else :
+        return "DB could not be filled"
+
+__name__ == "__main__"
+
+# main()
