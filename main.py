@@ -14,15 +14,18 @@ def main():
     ip_to_search = "88.204.166.59" 
     data_config = read_config_file()
 
-    print(">>>>>>>>> VirusTotal <<<<<<<")
-    vt_key = data_config.get("VT_API_KEY")
-    print(VT.main(ip_to_search, vt_key))
+    # print(">>>>>>>>> VirusTotal <<<<<<<")
+    # vt_key = data_config.get("VT_API_KEY")
+    # vt = VT.virusTotal(vt_key)
+    # print(vt.main(ip_to_search))
+    
     print(">>>>>>>>> Threat Intelligence <<<<<<<")
     TI_folder = data_config.get("TI_path")
     download_file = TI_folder + "download.sh"
     feed_folder = TI_folder + "feed"
     abuse_key = data_config.get("ABUSE_API_KEY")
-    print(TI.main(ip_to_search, download_file, feed_folder, abuse_key))
+    ti = TI.ThreatIntelligence(download_file, abuse_key, feed_folder)
+    print(ti.main(ip_to_search))
     
 if __name__ == "__main__" :
     main()
