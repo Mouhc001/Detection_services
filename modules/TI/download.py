@@ -14,14 +14,10 @@ import os
 
 
 def download_files(ti_folder):
-    data_config = {}
-    with open("config.json") as config_file:
-        data_config = json.load(config_file)
 
-    ti_path = data_config.get("TI_path")
-    ti_feed = os.path.expanduser(os.path.join(os.path.dirname(ti_path), "TI_feeds.csv"))
+    ti_feed = os.path.expanduser(os.path.join(ti_folder, "TI_feeds.csv"))
     db_size = sum(1 for line in open(ti_feed) if line.startswith("https"))
-    feed_folder = os.path.expanduser(os.path.join(ti_path, "feed"))
+    feed_folder = os.path.expanduser(os.path.join(ti_folder, "feed"))
     all_files_downloaded = True
 
     if len(os.listdir(feed_folder)) < db_size:

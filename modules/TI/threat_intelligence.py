@@ -70,9 +70,7 @@ class ThreatIntelligence:
     
     def main(self, ip):
         #First we fill the database with malicious iocs
-        filled = self.fill_db()
-        print("filled = ", filled)
-        if filled == True:
+        if self.fill_db() :
             print("DB filled successufully")
             
             search_result = self.search_for_ip(ip, self.feed_folder)

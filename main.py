@@ -20,7 +20,9 @@ def main():
     # print(vt.main(ip_to_search))
     
     print(">>>>>>>>> Threat Intelligence <<<<<<<")
-    TI_folder = data_config.get("TI_path")
+    #TI_folder = data_config.get("TI_path")
+
+    TI_folder = os.getcwd() + "/modules/TI/"
     download_file = TI_folder + "download.sh"
     feed_folder = TI_folder + "feed"
     abuse_key = data_config.get("ABUSE_API_KEY")

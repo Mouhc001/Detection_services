@@ -1,13 +1,6 @@
 import requests
 import json
 
-# In case of checking multiple ioc (IP, domain or URL), this class could be useful
-# class IOC:
-#     def __init__(self, ioc_type, ioc):
-#         self.ioc_type = ioc_type
-#         self.ioc = ioc
-
-
 #Calls the virusTotal API
 class virusTotal:
 
