@@ -67,7 +67,7 @@ class ThreatIntelligence:
         pass
     
     
-    
+# TODO : ceci est un test    
     def main(self, ip):
         #First we fill the database with malicious iocs
         if self.fill_db() :
