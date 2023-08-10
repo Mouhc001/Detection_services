@@ -20,6 +20,9 @@ def download_files(ti_folder):
     feed_folder = os.path.expanduser(os.path.join(ti_folder, "feed"))
     all_files_downloaded = True
 
+    if not os.path.exists(feed_folder):
+        os.makedirs(feed_folder)
+
     if len(os.listdir(feed_folder)) < db_size:
         print("Filling DB")
         with open(ti_feed) as csvfile:
